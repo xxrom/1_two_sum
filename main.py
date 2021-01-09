@@ -3,34 +3,19 @@ from typing import List
 
 class Solution:
 
-  def twoSum(self, numsUnsorted: List[int], target: int) -> List[int]:
-    nums = list(
-        map(lambda index: {
-            'index': index,
-            'value': numsUnsorted[index]
-        }, range(len(numsUnsorted))))
+  def twoSum(self, nums: List[int], target: int) -> List[int]:
+    diffMap = {}
 
-    nums = sorted(numsList, key=lambda x: x['value'])
+    for index, x in enumerate(nums):
+      print(x, diffMap)
+      diff = target - x
 
-    left = 0
-    right = len(nums) - 1
-    ans = []
+      if diff in diffMap:
+        return [diffMap[diff], index]
 
-    while (left < right):
-      leftVal = nums[left]['value']
-      leftIndex = nums[left]['index']
-      rightVal = nums[right]['value']
-      rightIndex = nums[right]['index']
+      diffMap[x] = index
 
-      if (leftVal + rightVal < target):
-        left += 1
-      elif (leftVal + rightVal > target):
-        right -= 1
-      else:
-        ans = [leftIndex, rightIndex]
-        left = right
-
-    return ans
+    return []
 
 
 my = Solution()
